@@ -1,0 +1,13 @@
+models:
+  - name: stg_orders
+    columns :
+      - name : order_item_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_products
+    columns :
+      - name : product_id
+        tests:
+          - not_null
+          - unique

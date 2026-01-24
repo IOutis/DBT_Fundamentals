@@ -1,0 +1,1 @@
+select id as product_id, name, category, coalesce(cost,0)as cost from {{source("thelook_ecommerce","products")}}
