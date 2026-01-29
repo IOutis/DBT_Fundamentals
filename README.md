@@ -7,6 +7,7 @@ This project demonstrates the implementation of intermediate-to-advanced Analyti
 **Surrogate Keys: Implemented dbt_utils.generate_surrogate_key to create a deterministic Primary Key (patient_pk) from the Patient_ID, ensuring uniqueness and safe downstream joins.**
 
 **DRY Macros: Created a reusable Jinja macro categorize_age(age_column) to standardize age bracketing ('Young', 'Adult', 'Senior') across the warehouse, replacing repetitive CASE WHEN logic**
+
 **Defensive Testing: Applied Generic Tests (unique, not_null) and rigorous accepted_values tests (including invalid checks) in schema.yml to guarantee data integrity at the source.**
 
 ## 2. Marts & Conditional Aggregation (fct_specialty_performance)
