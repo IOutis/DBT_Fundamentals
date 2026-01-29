@@ -1,0 +1,1 @@
+Select * from {{ref("fct_specialty_performance")}} where senior_churn_rate > 1 or senior_churn_rate < 0

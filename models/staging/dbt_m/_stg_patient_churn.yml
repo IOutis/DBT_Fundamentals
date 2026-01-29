@@ -1,0 +1,16 @@
+models:
+  - name: stg_dbt_m__patient_churn
+    columns:
+      - name: patientid
+        data_tests:
+          - unique
+          - not_null
+
+      - name: age_group
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Young'
+                - 'Adult'
+                - 'Senior'
+                - 'invalid'

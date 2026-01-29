@@ -1,13 +1,9 @@
 version: 2
 
 sources:
-  - name: thelook_ecommerce
+  - name: dbt_m
     # This tells dbt to look at the PUBLIC Google project, not yours
-    database: bigquery-public-data 
-    schema: thelook_ecommerce
+    database: dbt-training-485209
+    schema: dbt_mhussain
     tables:
-      - name: products
-      - name: orders
-      - name: order_items
-      - name: users
-      
+      - name : patient_churn
