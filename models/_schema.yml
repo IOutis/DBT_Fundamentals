@@ -1,0 +1,32 @@
+models:
+  - name: stg_thelook_ecommerce__order_items
+    columns:
+      - name: order_item_id
+        data_tests:
+          - unique
+          - not_null
+  - name: stg_thelook_ecommerce__orders
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_thelook_ecommerce__products
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_thelook_ecommerce__users
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: metricflow_time_spine
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day

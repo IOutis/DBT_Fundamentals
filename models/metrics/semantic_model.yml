@@ -1,0 +1,99 @@
+semantic_models:
+  - name: order_items
+    model: ref('stg_thelook_ecommerce__order_items')
+    defaults:
+      agg_time_dimension: created_at
+    entities:
+      - name: order_item_id
+        type: primary
+      - name : order_id
+        type: foreign
+      - name : product_id
+        type: foreign
+    dimensions:
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+        expr: CAST(created_at AS DATE)
+    
+    measures:
+      - name: total_revenue
+        expr: sale_price
+        agg: sum
+
+      
+  - name: orders
+    model: ref('stg_thelook_ecommerce__orders')
+    entities:
+      - name: order_id
+        type: primary
+      - name : customer_id
+        type: foreign
+    dimensions:
+      - name: status
+        type: 'categorical'
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+  - name: products
+    model: ref('stg_thelook_ecommerce__products')
+    entities:
+      - name: product_id
+        type: primary
+    dimensions:
+      - name: brand
+        type: categorical
+      - name: department
+        type: categorical
+      - name : category
+        type: categorical
+
+  - name: users
+    model: ref('stg_thelook_ecommerce__users')
+    defaults:
+      agg_time_dimension: created_at
+    entities:
+      - name: customer_id
+        type: primary
+    dimensions:
+      - name: country
+        type: categorical
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+    measures:
+      - name: total_users
+        expr: 1
+        agg: sum
+      
+
+metrics:
+  - name: revenue
+    label: "Total Revenue"
+    type: simple
+    type_params:
+      measure: total_revenue
+
+  - name: total_users
+    label : 'Total Users'
+    type: simple
+    type_params:
+      measure : total_users
+
+  - name: revenue_by_year
+    label: 'Revenue Year-To-Date'
+    type: cumulative
+    type_params:
+      grain_to_date: year
+      measure : total_revenue
+
+  - name: total_tax
+    label: 'Total Tax'
+    type: derived
+    type_params:
+      expr: revenue * 0.15
+      metrics:
+        - revenue
