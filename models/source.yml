@@ -1,0 +1,6 @@
+sources:
+  - name: test_schema
+    database: dbt-training-485209
+    schema: training
+    tables:
+      - name: test_table
