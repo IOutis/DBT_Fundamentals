@@ -1,0 +1,6 @@
+models:
+  - name: fct_inventory
+    columns:
+      - name: days_Chicago_IL
+        tests:
+          - is_positive
